@@ -3,7 +3,7 @@ Contributors: mjashik
 Tags: ramadan, prayer-times, bangladesh, bangla, islamic
 Requires at least: 5.0
 Tested up to: 6.9
-Stable tag: 1.1
+Stable tag: 1.1.1
 Requires PHP: 7.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -99,6 +99,11 @@ Yes, this plugin is completely free and open source.
 4. Eid Mubarak Message
 
 == Changelog ==
+
+= 1.1.1 =
+* Fixed: Enqueued styles for better security and performance.
+* Fixed: Removed directory assets as per WP.org guidelines.
+* Updated: Matched contributors to WordPress.org username.
 
 = 1.1 =
 * Updated unique slug and plugin identity for WP.org

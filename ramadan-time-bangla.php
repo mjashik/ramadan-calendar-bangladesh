@@ -6,7 +6,7 @@ Author: Monirud Jamman Ashik
 Author URI: http://mjashik.com/
 License: GPL3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
-Version: 1.1
+Version: 1.1.1
 */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -30,7 +30,7 @@ function mjashik_ramadan_admin_enqueue_scripts($hook) {
     if ('toplevel_page_mjashik-ramadan-settings' !== $hook) {
         return;
     }
-    wp_enqueue_style('ramadan-calendar-admin-style', plugins_url('css/style.css', __FILE__), array(), '1.1');
+    wp_enqueue_style('ramadan-calendar-admin-style', plugins_url('css/style.css', __FILE__), array(), '1.1.1');
 }
 add_action('admin_enqueue_scripts', 'mjashik_ramadan_admin_enqueue_scripts');
 
@@ -313,7 +313,7 @@ function mjashik_ramadan_calendar_shortcode() {
 
 function mjashik_ramadan_enqueue_scripts() {
     wp_enqueue_style('solaiman-lipi', 'https://fonts.maateen.me/solaiman-lipi/font.css', array(), '1.0.0');
-    wp_enqueue_style('ramadan-calendar-style', plugins_url('css/style.css', __FILE__), array('solaiman-lipi'), '1.1');
+    wp_enqueue_style('ramadan-calendar-style', plugins_url('css/style.css', __FILE__), array('solaiman-lipi'), '1.1.1');
 }
 add_action('wp_enqueue_scripts', 'mjashik_ramadan_enqueue_scripts');
 
