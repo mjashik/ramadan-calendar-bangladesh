@@ -1,5 +1,5 @@
 === Ramadan Calendar Bangladesh ===
-Contributors: ashik
+Contributors: mjashik
 Tags: ramadan, prayer-times, bangladesh, bangla, islamic
 Requires at least: 5.0
 Tested up to: 6.9

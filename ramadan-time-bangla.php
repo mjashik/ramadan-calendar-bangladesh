@@ -26,25 +26,31 @@ function mjashik_ramadan_add_admin_menu() {
 }
 add_action('admin_menu', 'mjashik_ramadan_add_admin_menu');
 
+function mjashik_ramadan_admin_enqueue_scripts($hook) {
+    if ('toplevel_page_mjashik-ramadan-settings' !== $hook) {
+        return;
+    }
+    wp_enqueue_style('ramadan-calendar-admin-style', plugins_url('css/style.css', __FILE__), array(), '1.1');
+}
+add_action('admin_enqueue_scripts', 'mjashik_ramadan_admin_enqueue_scripts');
+
 function mjashik_ramadan_settings_page() {
     ?>
 <div class="wrap">
     <h1><?php echo esc_html__('Ramadan Time Settings', 'ramadan-calendar-bangladesh'); ?></h1>
 
-    <div class="card" style="max-width: 800px; margin-top: 20px; padding: 20px; background: white;">
-        <h2 style="margin-top: 0;"><?php echo esc_html__('Available Shortcodes', 'ramadan-calendar-bangladesh'); ?></h2>
+    <div class="mjashik-ramadan-admin-card">
+        <h2><?php echo esc_html__('Available Shortcodes', 'ramadan-calendar-bangladesh'); ?></h2>
 
-        <div style="margin-bottom: 30px;">
+        <div class="mjashik-ramadan-shortcode-item">
             <h3><?php echo esc_html__('Daily Timetable', 'ramadan-calendar-bangladesh'); ?></h3>
-            <code
-                style="display: inline-block; padding: 10px; background: #f5f5f5; margin: 10px 0;">[mjashik_ramadan_time]</code>
+            <code class="mjashik-ramadan-shortcode-code">[mjashik_ramadan_time]</code>
             <p><?php echo esc_html__('Shows today\'s Sehri and Iftar times for all divisions in Bangladesh.', 'ramadan-calendar-bangladesh'); ?></p>
         </div>
 
-        <div style="margin-bottom: 30px;">
+        <div class="mjashik-ramadan-shortcode-item">
             <h3><?php echo esc_html__('Full Calendar', 'ramadan-calendar-bangladesh'); ?></h3>
-            <code
-                style="display: inline-block; padding: 10px; background: #f5f5f5; margin: 10px 0;">[mjashik_ramadan_calendar]</code>
+            <code class="mjashik-ramadan-shortcode-code">[mjashik_ramadan_calendar]</code>
             <p><?php echo esc_html__('Displays the complete Ramadan calendar for 2026.', 'ramadan-calendar-bangladesh'); ?></p>
         </div>
     </div>
@@ -192,9 +198,9 @@ function mjashik_is_ramadan_over() {
 
 function mjashik_ramadan_time_function() {
     if (mjashik_is_ramadan_over()) {
-        return '<div class="eid-mubarak-container" style="background-color: #310D43; color: #fff; padding: 30px; text-align: center; border-radius: 10px; margin: 20px 0; font-family: SolaimanLipi, Arial, sans-serif;">
-            <div style="font-size: 36px; margin-bottom: 15px;">' . esc_html__('ঈদ মোবারক', 'ramadan-calendar-bangladesh') . '</div>
-            <div style="font-size: 20px; line-height: 1.5;">' . 
+        return '<div class="eid-mubarak-container">
+            <div class="eid-mubarak-title">' . esc_html__('ঈদ মোবারক', 'ramadan-calendar-bangladesh') . '</div>
+            <div class="eid-mubarak-content">' . 
                 esc_html__('আপনার ও আপনার পরিবারের সকল সদস্যদের ঈদ মোবারক।', 'ramadan-calendar-bangladesh') . '<br>' . 
                 esc_html__('আল্লাহ আমাদের সকলের রোজা, নামাজ ও ইবাদত কবুল করুন।', 'ramadan-calendar-bangladesh') . '
             </div>
@@ -210,32 +216,6 @@ function mjashik_ramadan_time_function() {
     $today_day_bangla = mjashik_convert_to_bangla($today_day);
 
     $html = '
-    <style>
-        @import url("https://fonts.maateen.me/solaiman-lipi/font.css");
-        .mjashik-ramadan-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            font-family: SolaimanLipi, Arial, sans-serif;
-        }
-        .mjashik-ramadan-table th {
-            background-color: #310D43;
-            border: 2px solid #dee2e6;
-            color: #fff;
-            padding: 12px;
-            font-weight: bold;
-            text-align: center;
-        }
-        .mjashik-ramadan-table td {
-            border: 2px solid #dee2e6;
-            padding: 10px;
-            text-align: center;
-        }
-        .mjashik-ramadan-table tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-    </style>
-    
     <table class="mjashik-ramadan-table">
         <thead>
             <tr>
@@ -272,38 +252,7 @@ function mjashik_ramadan_calendar_shortcode() {
 
     $wp_timezone = mjashik_get_wp_timezone();
     
-    $output = '
-    <style>
-        @import url("https://fonts.maateen.me/solaiman-lipi/font.css");
-        .ramadan-calendar {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            font-family: SolaimanLipi, Arial, sans-serif;
-        }
-        .ramadan-calendar th, .ramadan-calendar td {
-            border: 1px solid #dee2e6;
-            padding: 10px;
-            text-align: center;
-        }
-        .ramadan-calendar th {
-            background-color: #310D43;
-            color: white;
-        }
-        .ramadan-calendar tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        .ramadan-calendar tr.today {
-            background-color: #e8f5e9;
-        }
-        @media screen and (max-width: 768px) {
-            .ramadan-calendar {
-                display: block;
-                overflow-x: auto;
-                white-space: nowrap;
-            }
-        }
-    </style>';
+    $output = '';
     
     $output .= '<table class="ramadan-calendar">
         <thead>
@@ -364,6 +313,7 @@ function mjashik_ramadan_calendar_shortcode() {
 
 function mjashik_ramadan_enqueue_scripts() {
     wp_enqueue_style('solaiman-lipi', 'https://fonts.maateen.me/solaiman-lipi/font.css', array(), '1.0.0');
+    wp_enqueue_style('ramadan-calendar-style', plugins_url('css/style.css', __FILE__), array('solaiman-lipi'), '1.1');
 }
 add_action('wp_enqueue_scripts', 'mjashik_ramadan_enqueue_scripts');
 

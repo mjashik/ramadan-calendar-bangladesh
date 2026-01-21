@@ -1,0 +1,109 @@
+/* Shortcode 1 Table Styles */
+.mjashik-ramadan-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-family: SolaimanLipi, Arial, sans-serif;
+}
+
+.mjashik-ramadan-table th {
+    background-color: #310D43;
+    border: 2px solid #dee2e6;
+    color: #fff;
+    padding: 12px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.mjashik-ramadan-table td {
+    border: 2px solid #dee2e6;
+    padding: 10px;
+    text-align: center;
+}
+
+.mjashik-ramadan-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Shortcode 2 Calendar Styles */
+.ramadan-calendar {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-family: SolaimanLipi, Arial, sans-serif;
+}
+
+.ramadan-calendar th,
+.ramadan-calendar td {
+    border: 1px solid #dee2e6;
+    padding: 10px;
+    text-align: center;
+}
+
+.ramadan-calendar th {
+    background-color: #310D43;
+    color: white;
+}
+
+.ramadan-calendar tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.ramadan-calendar tr.today {
+    background-color: #e8f5e9;
+}
+
+/* Eid Mubarak Styles */
+.eid-mubarak-container {
+    background-color: #310D43;
+    color: #fff;
+    padding: 30px;
+    text-align: center;
+    border-radius: 10px;
+    margin: 20px 0;
+    font-family: SolaimanLipi, Arial, sans-serif;
+}
+
+.eid-mubarak-title {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.eid-mubarak-content {
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+/* Responsive Table */
+@media screen and (max-width: 768px) {
+    .ramadan-calendar {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
+/* Admin Styles */
+.mjashik-ramadan-admin-card {
+    max-width: 800px;
+    border: 1px solid #ccd0d4;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
+    margin-top: 20px;
+    padding: 20px;
+    background: white;
+}
+
+.mjashik-ramadan-admin-card h2 {
+    margin-top: 0;
+}
+
+.mjashik-ramadan-shortcode-item {
+    margin-bottom: 30px;
+}
+
+.mjashik-ramadan-shortcode-code {
+    display: inline-block;
+    padding: 10px;
+    background: #f5f5f5;
+    margin: 10px 0;
+}
