@@ -95,8 +95,6 @@ Yes, this plugin is completely free and open source.
 
 1. Daily Timetable View
 2. Full Calendar View
-3. Admin Settings Page
-4. Eid Mubarak Message
 
 == Changelog ==
 
